@@ -1,0 +1,22 @@
+body {
+    background-color: aquamarine;
+}
+/* Anidado */
+nav > ul > li {
+    list-style-type:none;
+    display:inline;
+}
+
+nav > ul > li > a {
+    color:blue;
+}
+
+/* Clase */
+.content {
+    background-color: rgb(205, 199, 199);
+}
+
+/* ID */
+#title{
+    border: 1px dotted black;
+}
