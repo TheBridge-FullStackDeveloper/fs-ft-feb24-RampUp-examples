@@ -1,22 +1,61 @@
+:root {
+  --lavender: #d3e4ff;
+  --dutch-white: #fff1c9;
+  --pale-dogwood: #fedac9;
+  --amber: #ffbe0b;
+  --orange: #fb5607;
+  --rose: #ff006e;
+  --blue-violet: #8338ec;
+  --azure: #3a86ff;
+}
+
 body {
-    background-color: aquamarine;
+  background-color: var(--lavender);
 }
 /* Anidado */
 nav > ul > li {
-    list-style-type:none;
-    display:inline;
+  list-style-type: none;
+  display: inline;
 }
 
 nav > ul > li > a {
-    color:blue;
+  color: blue;
 }
 
 /* Clase */
 .content {
-    background-color: rgb(205, 199, 199);
+  background-color: var(--pale-dogwood);
 }
 
 /* ID */
-#title{
-    border: 1px dotted black;
+#title {
+  border: 1px dotted black;
+}
+
+#main_figure {
+  text-align: center;
+}
+#main_picture {
+  width: 35%;
+  opacity: 0.8;
+}
+
+figure > figcaption {
+  font-size: x-small;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--azure);
+}
+
+td:hover {
+  background-color: var(--dutch-white);
 }
