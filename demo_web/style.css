@@ -9,22 +9,62 @@
   --azure: #3a86ff;
 }
 
+* {
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 1.2rem; /* 1.2x16px */
+}
+
 body {
   background-color: var(--lavender);
 }
+
+h1 {
+  margin: 22px 5px;
+  padding: 8px 10px;
+}
+
+header {
+  background-color: var(--blue-violet);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus
+{
+  background-color: var(--rose);
+}
+
+input[type="submit"]:hover
+{
+  background-color: var(--azure);
+  width:50%;
+  transition-duration: 2s;
+  border-radius: 20px;
+}
+
 /* Anidado */
 nav > ul > li {
   list-style-type: none;
   display: inline;
+  padding-right: 8px;
 }
 
 nav > ul > li > a {
-  color: blue;
+  color: var(--dutch-white);
+  text-decoration: none;
 }
 
 /* Clase */
 .content {
   background-color: var(--pale-dogwood);
+  margin: 22px 5px;
+  padding: 8px 10px;
+}
+
+.content > h2 {
+  margin: 8px auto;
 }
 
 /* ID */
