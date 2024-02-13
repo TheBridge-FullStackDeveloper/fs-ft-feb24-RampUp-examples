@@ -241,7 +241,6 @@ let resultado2 = resta(2, 3); // -1
 console.log(resultado2);
 console.log(resta(55, 3));
 
-
 /* Llamadas a funciones (para ejecutarlas) */
 //cruzarCalle();
 //cruzarCalleSwitch();
@@ -249,3 +248,195 @@ console.log(resta(55, 3));
 //printYears();
 //comprobarNombre()
 //probandoArrays();
+
+//Ejercicio 2 : Pedir número al usuario
+const guardarNumeros = (introUserNum) => {
+  let arrayFinal = [];
+  introUserNum = parseInt(prompt("Introduce un número"));
+  while (introUserNum != 0) {
+    arrayFinal.push(introUserNum);
+    introUserNum = parseInt(prompt("Introduce un número"));
+  }
+  return arrayFinal;
+};
+
+//console.log(guardarNumeros().toSorted((a, b) => a - b));
+
+// While 0....N veces
+// Do-while 1....N veces
+
+//Ejercicio 2 : Pedir número al usuario
+const guardarNumeros2 = () => {
+  let arrayFinal = [];
+  let introUserNum = NaN;
+  do {
+    introUserNum = parseInt(prompt("Introduce un número")); //0
+    arrayFinal.push(introUserNum);
+  } while (introUserNum != 0);
+
+  arrayFinal.pop(); // saca el 0 del final
+  return arrayFinal.sort((a, b) => a - b); // ordena
+};
+
+//console.log(guardarNumeros2());
+
+function pedirNumeros() {
+  let numeros = [];
+
+  while (true) {
+    // 6 veces -> 0...5
+    const introUserNum = parseInt(prompt("Introduce un número"));
+    if (introUserNum == 0) break;
+    numeros.push(introUserNum);
+  }
+  return numeros.sort((a, b) => a - b);
+}
+
+// 25.- Crear las variables preI y preJ con valor 0 a continuación cree un bucle que itere 11 veces. En cada iteración se deberá sumar al valor de preI el valor de ++preJ
+
+let preI = 0;
+let preJ = 0;
+
+for (let i = 1; i <= 11; i++) {
+  preI += ++preJ;
+}
+
+// 10.- Crear variable contarHasta10_2 con valor 0 e incrementar su valor con un bucle for hasta que se verifique que contarHasta10_2 === 10
+
+let contarHasta10_2 = 0;
+
+for (; contarHasta10_2 < 10; contarHasta10_2++) {
+  console.log(contarHasta10_2);
+}
+
+let contarHasta10_22 = 0;
+
+for (let i = 0; i < 10; i++) {
+  contarHasta10_22++;
+  console.log(contarHasta10_22);
+}
+
+// Objetos
+
+let person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 50,
+  eyeColor: "blue",
+};
+
+console.log(person.firstName);
+console.log(person["firstName"]);
+
+console.log(person.firstName);
+console.log(person["firstName"]);
+console.log(person["last-Name"]);
+
+let person2 = {
+  firstName: "John",
+  lastName: "Doe",
+  id: 5566,
+  fullName: function () {
+    return this.firstName + " " + this.lastName;
+  },
+};
+
+console.log(person2.fullName());
+
+let person3 = {
+  firstName: "John",
+  "last-Name": "Doe",
+  id: 5566,
+  fullName: function () {
+    return person3["firstName"] + " " + person3["last-Name"];
+  },
+};
+
+const person4 = {
+  firstName: "John",
+  lastName: "Doe",
+  id: 5566,
+  fullName: () => this.firstName + " " + this.lastName, // no se puede acceder con el this y flecha
+};
+
+function ejemploObjetos() {
+  let cars = [
+    { type: "Fiat", model: "500", color: "white" },
+    { type: "Opel", model: "Corsa", color: "Blue" },
+    { type: "Peugeot", model: "609", color: "green" },
+  ];
+
+  console.log(cars[1].model);
+  console.log(cars[2]["color"]);
+
+  let cars2 = [
+    { type: "Fiat", model: "500", color: "white", "max-tara": 1500 },
+    { type: "Opel", model: "Corsa", color: "Blue", "max-tara": 1600 },
+    { type: "Peugeot", model: "609", color: "green", "max-tara": 1700 },
+  ];
+
+  console.log(cars2[2]["max-tara"]);
+}
+ejemploObjetos();
+
+// Llamada a la API para acceder al rate de un producto
+//fakestoreapi.com/docs
+https: fetch("https://fakestoreapi.com/products")
+  .then((res) => res.json())
+  .then((data) => console.log(data[1].rating.rate));
+
+let car = {
+  type: "Fiat",
+  model: "500",
+  color: "white",
+  "max-tara": 1700,
+  speed: 0,
+  drive: function (newSpeed) {
+    this.speed = newSpeed;
+    console.log("Estás conduciendo a:" + this.speed);
+  },
+  getInfo: function () {
+    console.log(this.type, this.model, this.color, this["max-tara"]);
+  },
+};
+
+car.drive(100);
+
+let email = "hola@gmail.com";
+let pos = email.search("@");
+let username = email.slice(0,pos);
+
+  //Reemplazar parte de un string
+  //string-array-string
+  let message = "hola que tal";
+  let arrMess = message.split(" "); // "" --> [] separando por espacions
+  arrMess[0] = "adios";
+  arrMess.join(" ");
+
+/*
+  - Los años bisiestos son múltiplos de 4
+- Los múltiplos de 100 no lo son
+- Los múltiplos de 400 sí
+
+year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
+
+// 100
+true && (false||false) --> true && false --> false
+// 400
+true && (false||true) --> true && true --> true
+//4
+true && (true||false) --> true&&true --> true
+
+*/
+
+
+while(true){
+    let year = prompt("Introduce un año para saber si es bisiesto");
+    if(year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)){
+        console.log("Es bisiesto:"+year);
+        alert("Es bisiesto:"+year);
+        break;
+    }else{
+        console.log("NO es bisiesto:"+year);
+    }
+}
