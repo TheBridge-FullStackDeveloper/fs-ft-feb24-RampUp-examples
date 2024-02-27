@@ -224,3 +224,55 @@ document.getElementById("boton8").addEventListener("click", function () {
     lista += "</section>";
   document.getElementById("lista3").innerHTML = lista;
 });
+
+
+fetch("https://fakestoreapi.com/products/1") // Lanza la petición HTTP GET
+  .then((res) => res.json()) // Tranforma datos a JSON para tratar en JS
+  .then((data) => console.log(data)); // Usa los datos en la tarea que necesites
+
+fetch("https://fakestoreapi.com/products/1") // Lanza la petición HTTP GET
+  .then((res) => res.json()) // Tranforma datos a JSON para tratar en JS
+  .then((product) => console.log(product)); // Usa los datos en la tarea que necesites
+
+fetch("https://fakestoreapi.com/products/1") // Lanza la petición HTTP GET
+  .then((res) => res.json()) // Tranforma datos a JSON para tratar en JS {}
+  .then((product) => {
+    document
+      .querySelectorAll("p")
+      .forEach((p) => (p.innerHTML = product.title));
+    document.body.innerHTML += product.price; // añadir precio al final del body
+  }); // Usa los datos en la tarea que necesites
+
+  /* Añadir cards con datos de la API usando fetch() */
+fetch("https://fakestoreapi.com/products") //  HTTP GET todos los productos
+  .then((res) => res.json()) // Tranforma datos a JSON para tratar en JS {}
+  .then((productList) => {
+    // Pintar tarjetas con título y precio
+    let cards = `<section>`;
+    for (let i = 0; i < productList.length; i++) {
+      cards += `
+    <article>
+        <h1>${productList[i].title}</h1>
+        <p>${productList[i].price}</p>
+    </article>`;
+    }
+    cards += `</section>`;
+    document.querySelector("main").innerHTML += cards;
+  }); // Usa los datos en la tarea que necesites
+
+setTimeout(() => {
+  console.log("Retraso de 3 segundos");
+}, 3000);
+
+console.log("hola");
+
+//Carrera/Race de llamadas asíncronas
+fetch("https://fakestoreapi.com/products") // Lanza la petición HTTP GET
+  .then((res) => res.json()) // Tranforma datos a JSON para tratar en JS
+  .then((product) => console.log(product)); // Usa los datos en la tarea que necesites
+
+fetch("https://fakestoreapi.com/products/1") // Lanza la petición HTTP GET
+  .then((res) => res.json()) // Tranforma datos a JSON para tratar en JS
+  .then((product) => console.log("BBBBB" + product.title)); // Usa los datos en la tarea que necesites
+
+console.log("hola");
