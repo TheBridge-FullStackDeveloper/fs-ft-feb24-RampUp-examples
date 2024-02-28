@@ -276,3 +276,106 @@ fetch("https://fakestoreapi.com/products/1") // Lanza la petición HTTP GET
   .then((product) => console.log("BBBBB" + product.title)); // Usa los datos en la tarea que necesites
 
 console.log("hola");
+
+// Llamada a función asíncrona
+function getGitHubUserProfile(username) {
+  return fetch("https://api.github.com/users/" + username) //Promesa
+    .then((user) => user.json())
+    .catch(function (error) {
+      console.log(error);
+      alert(error);
+    });
+}
+
+//insertar en body
+//json.stringify()
+getGitHubUserProfile("imisstheoldpabl0").then(
+  (data) => (document.body.innerHTML = JSON.stringify(data))
+);
+
+// Esto no funciona por la asincronía
+/*
+let resultado = getGitHubUserProfile("imisstheoldpabl0")
+document.body.innerHTML = JSON.stringify(resultado)
+*/
+
+function getGitHubUserProfile(username) {
+  return fetch("https://api.github.com/users/" + username) //Promesa
+    .then((user) => user.json()) //Fulfilled
+    .catch((error) => { //Rejected
+      console.log(error);
+      alert("Error en la llamada "+error);
+    });
+}
+
+//insertar en body
+//json.stringify()
+getGitHubUserProfile("imisstheoldpabl0")
+  .then(data => {
+    if(data != undefined){
+      document.body.innerHTML = JSON.stringify(data);
+    }else{ // Error de otro tipo
+      document.body.innerHTML = "Error interno en la petición"
+    }
+  })
+
+
+// No se sabe cuál llegará primero
+const pokeURL1  = 'https://pokeapi.co/api/v2/pokemon/pikachu/';
+const pokeURL2 = 'https://pokeapi.co/api/v2/pokemon/ditto/';
+
+fetch(pokeURL1)
+  .then((res) => res.json())
+  .then((data) => {
+    console.log('HA TERMINADO PIKACHU');
+    console.log(data);
+  });
+
+fetch(pokeURL2)
+  .then((res) => res.json())
+  .then((data) => {
+    console.log('HA TERMINADO DITTO');
+    console.log(data);
+  });
+
+
+/*********** Forma 3 ************/
+console.time("***timer2***");
+let datos0 = "";
+let datos1 = "";
+Promise.all([
+  fetch(rickMortyURL).then((res) => res.json()),
+  fetch(pokeURL).then((res) => res.json()),
+]).then((data) => {
+  const rickMortyData = data[0];
+  const pokemonData = data[1];
+  console.log(data[0])
+  console.log(data[1])
+  datos0 = data[0] // Almacena resultado Rick & Morty
+  datos1 = data[1] // Almacena resultado Ditto
+
+  console.timeEnd("***timer2***");
+});
+
+
+// Hacer la petición a la API
+fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        // Crear un nuevo elemento de imagen y establecer su src a la imagen del personaje
+        const img = document.createElement('img');
+        img.src = data.image;
+
+        // Crear un nuevo elemento de título y establecer su texto al nombre del personaje
+        const h1 = document.createElement('h1');
+        h1.textContent = data.name;
+
+        // Añadir los elementos al cuerpo del documento
+        document.body.appendChild(h1);
+        document.body.appendChild(img);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+
