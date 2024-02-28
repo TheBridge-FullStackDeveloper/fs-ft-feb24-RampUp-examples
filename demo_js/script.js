@@ -208,6 +208,7 @@ function suma(a, b) {
   console.log("El resultado es " + (a + b));
   return a + b;
 }
+
 let resultado = suma(2, 3);
 console.log("This is the result: " + resultado);
 console.log(resultado * 1000); // Ej -> de m a mm
@@ -404,14 +405,14 @@ car.drive(100);
 
 let email = "hola@gmail.com";
 let pos = email.search("@");
-let username = email.slice(0,pos);
+let username = email.slice(0, pos);
 
-  //Reemplazar parte de un string
-  //string-array-string
-  let message = "hola que tal";
-  let arrMess = message.split(" "); // "" --> [] separando por espacions
-  arrMess[0] = "adios";
-  arrMess.join(" ");
+//Reemplazar parte de un string
+//string-array-string
+let message = "hola que tal";
+let arrMess = message.split(" "); // "" --> [] separando por espacions
+arrMess[0] = "adios";
+arrMess.join(" ");
 
 /*
   - Los años bisiestos son múltiplos de 4
@@ -429,14 +430,592 @@ true && (true||false) --> true&&true --> true
 
 */
 
-
-while(true){
-    let year = prompt("Introduce un año para saber si es bisiesto");
-    if(year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)){
-        console.log("Es bisiesto:"+year);
-        alert("Es bisiesto:"+year);
-        break;
-    }else{
-        console.log("NO es bisiesto:"+year);
-    }
+while (true) {
+  let year = prompt("Introduce un año para saber si es bisiesto");
+  if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
+    console.log("Es bisiesto:" + year);
+    alert("Es bisiesto:" + year);
+    break;
+  } else {
+    console.log("NO es bisiesto:" + year);
+  }
 }
+
+/*
+Crea una función que determine si una array contiene valores booleanos.
+	Ejemplos de input
+	//[ 0, null, undefined, NaN] --> false
+	//[null, false,1]  --> true (editado) 
+  Al menos 1 elemento debe ser un booleano (true/false)
+  */
+
+function comprobarBooleanos(data) {
+  for (let i = 0; i < data.length; i++) {
+    if (typeof data[i] == "boolean") {
+      return true;
+    }
+  }
+  return false; // si en el bucle no se encuentran booleanos
+}
+
+console.log(comprobarBooleanos([1, 2, "hola", true, "que"])); // true
+console.log(comprobarBooleanos([1, 2, "hola", "hahha"])); // false
+
+function eliminarDuplicados(arrOriginal) {
+  let arrSinDuplicados = [];
+  //Miro el primer item del array original
+  for (let i = 0; i < arrOriginal.length; i++) {
+    //Comparo i con los demás items mediante el contador j
+    for (let j = 0; j < arrOriginal.length; j++) {
+      //Compruebo con j !=i que no lo estoy comparando consigo mismo.
+      while (j != i) {
+        //Si los valores de ambas posiciones coinciden...
+        if (arrOriginal[i] === arrOriginal[j]) {
+          //... miro a ver si ya está guardado, y si no lo está, lo guardo, si lo está, salgo.
+          for (let l = 0; l < arrSinDuplicados.length; l++) {
+            if (arrOriginal[i] !== arrSinDuplicados[l]) {
+              arrSinDuplicados.push(arrOriginal[i]);
+            } else {
+              return "error1";
+              break;
+            }
+          }
+        } else {
+          return arrSinDuplicados;
+          break;
+        }
+      }
+    }
+  }
+  return arrSinDuplicados;
+}
+
+function eliminarDuplicados(array) {
+  let nuevoArray = [];
+  for (i = 0; i < array.length; i++) {
+    if (!nuevoArray.includes(array[i])) {
+      nuevoArray.push(array[i]);
+      console.log(nuevoArray);
+    }
+  }
+  return nuevoArray;
+}
+
+function eliminarDuplicados(cosota) {
+  let resultao = cosota.filter((item, index) => cosota.indexOf(item) === index);
+  return resultao;
+}
+
+function esPrimo(numero) {
+  for (let i = 2; i < numero; i++) {
+    // 1 no entraría, daría true. 2 no entraría, daría true. 3 entraría pero no se cumpliría la condicion.
+    if (numero % i === 0) {
+      // 4 entraría y cumpliría la condicion. 5 entraría pero se saldría porque no cumple
+      return false;
+    }
+  }
+  return true;
+}
+
+/* Ejercicio 1:
+Diseña un algoritmo que cuente las veces que aparece una determinada letra en una frase */
+//Tortilla
+function contarLetras(frase, letra) {
+  let contador = 0;
+  for (let i = 0; i < frase.length; i++) {
+    if (frase[i].toLowerCase() == letra.toLowerCase()) {
+      contador++;
+    }
+  }
+  return contador;
+}
+
+contarLetras("hola,que tal", "a");
+contarLetras("hola,que talo", "o");
+
+/* Ejercicio 2:
+Diseña un algoritmo que imprima los números impares entre un número dado por el usuario y los siguientes 50 números */
+// [2,52] --> iterar 50
+// [3,53] --> iterar 50
+
+function imprimirImpares(num) {
+  for (let i = num; i <= num + 50; i++) {
+    if (i % 2 !== 0) {
+      console.log(i);
+    }
+  }
+}
+
+imprimirImpares(2);
+imprimirImpares(3);
+
+/*
+function eliminarDuplicados(arrayOriginal) {
+  let arraySinDuplicados = [];
+
+  // Sustuir ordenación por algoritmo Bubble sort (sin métodos)
+  arrayOriginal.sort((a, b) => a - b);
+
+  for (let i = 0; i < arrayOriginal.length; i++) {
+    if (arrayOriginal[i] !== arrayOriginal[i + 1]) {
+      arraySinDuplicados.push(arrayOriginal[i]);
+    }
+  }
+  return arraySinDuplicados;
+}
+
+*/
+
+/*
+function eliminarDuplicados(array) {
+
+  // Creo un array para almacenar los numeros sin duplicar
+  let sinDuplicados = [];
+
+  // Recorremos el array original para tener el primer miembro de la comparación
+  for (let i = 0; i < array.length; i++) {
+
+      // Creo una variable para detectar si encuentra alguna igualdad
+      let igualdad = false;
+      // La declaro aquí porque a cada vuelta hago que se resetee a false
+
+      // Recorremos el nuevo array (sinDuplicados) para tener el segundo miembro de la comparación
+      for (let j = 0; j < sinDuplicados.length; j++) {
+
+          // Si encuentra una igualdad por el array, establecemos igualdad como true
+          if (array[i] == sinDuplicados[j]) {
+              igualdad = true;
+          }
+      }
+      // Si no ha encontrado ninguna igualdad, subirá el numero
+      if (igualdad == false)
+          sinDuplicados.push(array[i]);
+  }
+  return sinDuplicados;
+}
+
+*/
+
+/*
+8.- Dado un objeto de nombre Led obtén el valor de las propiedades rojo, verde y azul guardándolo en la variable array RGB[Rojo, Verde, Azul]
+*/
+/*
+let Led = {
+  rojo:"Rojo",
+  verde:"Verde",
+  azul:"Azul"
+}
+
+let RGB = [Led.rojo,Led.verde,Led.azul]
+*/
+
+/*
+This problem was asked by Netflix.
+Given an array of integers, determine whether it contains a Pythagorean triplet. Recall that a Pythogorean triplet (a, b, c) is defined by the equation a^2+ b^2= c^2.
+*/
+
+function containsPythagoreanTriplet(data) {
+  if (data[0] ** 2 + data[1] ** 2 === data[2] ** 2) return true;
+
+  return false;
+}
+
+let values = [3, 4, 5]; // a,b,c
+containsPythagoreanTriplet(values);
+
+function containsPythagoreanTriplet(data) {
+  let a = data[0];
+  let b = data[1];
+  let c = data[2];
+
+  if (a ** 2 + b ** 2 === c ** 2) return true;
+
+  return false;
+}
+
+// Destructuring
+function containsPythagoreanTriplet([a, b, c]) {
+  // Validación del array recibido por parámetro
+
+  if (a ** 2 + b ** 2 === c ** 2) return true;
+
+  return false;
+}
+
+let values = [3, 4, 5]; // a,b,c
+containsPythagoreanTriplet(values);
+
+function accum(s) {
+  let newString = "";
+
+  for (let i = 0; i < s.length; i++) {
+    // iterar letra
+    for (let j = 0; j < i + 1; j++) {
+      // iterar por repe de letra
+      if (j == 0) {
+        newString += s[i].toUpperCase(); // mayuscula
+      } else {
+        newString += s[i].toLowerCase(); // minuscula
+      }
+    }
+    if (i != s.length - 1) {
+      newString += "-";
+    }
+  }
+  return newString;
+}
+
+function repetirCaracteres() {
+  let accum = "abcd";
+  let finalResult = "";
+
+  for (let i = 0; i < accum.length; i++) {
+    let character = accum[i];
+
+    console.log(character.toUpperCase() + character.repeat(i) + "-");
+    finalResult += `${character.toUpperCase() + character.repeat(i)}-`;
+  }
+
+  return finalResult;
+}
+
+function repetirCaracteres2(s) {
+  let array = [];
+  s = s.toLowerCase();
+  for (let i = 0; i < s.length; i++) {
+    //Me mete todos los valores resultantes en un array, que tendría que pasar en algún momento a string
+    array.push(s[i].toUpperCase() + s[i].repeat(i));
+  } //Queda psar a string para poder iterar con el .charAt y el .toUpperCase
+  return array.join("-");
+}
+
+var users = [
+  { user: "👩🏻‍💻" },
+  { user: "👨🏾‍💻" },
+  { user: "💃" },
+  { user: "👨🏻‍🎓" },
+  { user: "🧑🏻‍🏫" },
+  { user: "🦸‍♂️" },
+  { user: "🧟‍♂️" },
+];
+
+let resultDetails = users.map((user) => {
+  let mark = Math.random() * 100;
+  user.mark = mark;
+  return user;
+});
+//for me resultDetails
+/*
+0: {user: "👩🏻‍💻", mark: 76.03572182106969}
+1: {user: "👨🏾‍💻", mark: 71.62190728557552}
+2: {user: "💃", mark: 56.21776553271223}
+3: {user: "👨🏻‍🎓", mark: 25.801390164601944}
+4: {user: "🧑🏻‍🏫", mark: 85.74297532451267}
+5: {user: "🦸‍♂️", mark: 67.11805101358996}
+6: {user: "🧟‍♂️", mark: 18.253450044782184}
+*/
+
+var selectedCandidate = resultDetails.filter((user) => {
+  if (user.mark > 50) {
+    return user;
+  }
+});
+/* selected candidate 
+0: {user: "👩🏻‍💻", mark: 76.03572182106969}
+1: {user: "👨🏾‍💻", mark: 71.62190728557552}
+2: {user: "💃", mark: 56.21776553271223}
+3: {user: "🧑🏻‍🏫", mark: 85.74297532451267}
+4: {user: "🦸‍♂️", mark: 67.11805101358996}
+*/
+
+let usuarios = [
+  { user: "👩🏻‍💻" },
+  { user: "👨🏾‍💻" },
+  { user: "💃" },
+  { user: "👨🏻‍🎓" },
+  { user: "🧑🏻‍🏫" },
+  { user: "🦸‍♂️" },
+  { user: "🧟‍♂️" },
+];
+
+let aprobados = usuarios
+  .map((user) => {
+    let mark = Math.random() * 100;
+    user.mark = mark;
+    return user;
+  }) //[]
+  .filter((user) => user.mark > 50) //[]
+  .reduce((acc, elem) => acc + elem.mark, 0) // Num
+  .toFixed(2);
+
+console.log(aprobados / usuarios.length); // promedio notas
+
+// Create Team
+
+let TeamMembers = selectedCandidate.reduce((teamMembers, user) => {
+  teamMembers.push(user);
+  return teamMembers;
+}, []);
+
+/*
+8.- Obtener el monto total de los elementos que pertenecen a catergory "code" en el siguiente array.
+*/
+
+const books = [
+  {
+    name: " JS for dummies",
+    author: "Emily A. Vander Veer",
+    price: 20,
+    category: "code",
+  },
+  {
+    name: "Don Quijote de la Mancha",
+    author: "Cervantes",
+    price: 14,
+    category: "novel",
+  },
+  {
+    name: "Juego de tronos",
+    author: "George R. Martin",
+    price: 32,
+    category: "Fantasy",
+  },
+  {
+    name: "javascript the good parts",
+    author: "Douglas Crockford",
+    price: 40,
+    category: "code",
+  },
+];
+// Resultado --> 60
+// category --> code
+console.log(
+  books
+    .filter((book) => book.category == "code")
+    .reduce((acc, item) => acc + item.price, 0)
+);
+
+// Concatenar con Spread operator y otras opciones
+// arr1 --> 100
+// arr2 --> 500
+//concatena los 2 arrays en 1 único array [1,2,3,5,7,8]
+for (let i = 0; i < arr1.length; i++) {
+  arr2.push(arr1[i]);
+}
+
+arr1.concat(arr2);
+// [1,2,3,5,7,8]
+console.log([...arr1, ...arr2]);
+
+// Field puede ser name o category
+function sortByKey(field) {
+  const products = [
+    { name: "roomba", category: "home" },
+    { name: "iPad", category: "electronics" },
+    { name: "lego Star Wars", category: "toys" },
+  ];
+  // sort by name
+  products.sort((a, b) => {
+    const nameA = a[field].toUpperCase(); // ignore upper and lowercase
+    const nameB = b[field].toUpperCase(); // ignore upper and lowercase
+    if (nameA > nameB) {
+      return 1;
+    }
+    if (nameA < nameB) {
+      return -1;
+    }
+
+    // names must be equal
+    return 0;
+  });
+  return products;
+}
+
+sortByKey("name");
+sortByKey("category");
+
+function combineAllArrays(...args) {
+  let resultado = [];
+
+  for (let i = 0; i < args.length; i++) {
+    resultado = [...resultado, ...args[i]];
+  }
+  return resultado;
+}
+
+combineAllArrays(
+  [2, 7, 3, 1],
+  [33, 22, 11, 1],
+  [2, 7, 4, 12],
+  [2, 44, 22, 7, 3, 1]
+); // [2, 7, 3, 1, 2, 7, 4, 12, 2, 44, 22, 7, 3, 1]
+
+function combineAllArrays(...args) {
+  let resultado = [];
+
+  args.forEach((array) => (resultado = [...resultado, ...array]));
+  return resultado;
+}
+
+function sumAndSquare(...args) {
+  return args
+    .map((item) => item * item) // cuadrados
+    .reduce((acc, item) => acc + item, 0); // suma
+}
+
+const sumAndSquare = (...args) =>
+  args
+    .map((item) => item * item) // cuadrados
+    .reduce((acc, item) => acc + item, 0); // suma
+
+fetch("https://fakestoreapi.com/products/1") // Lanza la petición HTTP GET
+  .then((res) => res.json()) // Tranforma datos a JSON para tratar en JS
+  .then((data) => console.log(data)); // Usa los datos en la tarea que necesites
+
+fetch("https://fakestoreapi.com/products/1") // Lanza la petición HTTP GET
+  .then((res) => res.json()) // Tranforma datos a JSON para tratar en JS
+  .then((product) => console.log(product)); // Usa los datos en la tarea que necesites
+
+fetch("https://fakestoreapi.com/products/1") // Lanza la petición HTTP GET
+  .then((res) => res.json()) // Tranforma datos a JSON para tratar en JS {}
+  .then((product) => {
+    document
+      .querySelectorAll("p")
+      .forEach((p) => (p.innerHTML = product.title));
+    document.body.innerHTML += product.price; // añadir precio al final del body
+  }); // Usa los datos en la tarea que necesites
+
+fetch("https://fakestoreapi.com/products") //  HTTP GET todos los productos
+  .then((res) => res.json()) // Tranforma datos a JSON para tratar en JS {}
+  .then((productList) => {
+    // Pintar tarjetas con título y precio
+    let cards = `<section>`;
+    for (let i = 0; i < productList.length; i++) {
+      cards += `
+    <article>
+        <h1>${productList[i].title}</h1>
+        <p>${productList[i].price}</p>
+    </article>`;
+    }
+    cards += `</section>`;
+    document.querySelector("main").innerHTML = cards;
+  }); // Usa los datos en la tarea que necesites
+
+setTimeout(() => {
+  console.log("Retrasado por 3 segundo.");
+}, 3000);
+
+console.log("hola");
+
+//Carrera de llamadas asíncronas
+fetch("https://fakestoreapi.com/products") // Lanza la petición HTTP GET
+  .then((res) => res.json()) // Tranforma datos a JSON para tratar en JS
+  .then((product) => console.log(product)); // Usa los datos en la tarea que necesites
+
+fetch("https://fakestoreapi.com/products/1") // Lanza la petición HTTP GET
+  .then((res) => res.json()) // Tranforma datos a JSON para tratar en JS
+  .then((product) => console.log("BBBBB" + product.title)); // Usa los datos en la tarea que necesites
+
+console.log("hola");
+
+// Llamada a función asíncrona
+function getGitHubUserProfile(username) {
+  return fetch("https://api.github.com/users/" + username) //Promesa
+    .then((user) => user.json())
+    .catch(function (error) {
+      console.log(error);
+      alert(error);
+    });
+}
+
+//insertar en body
+//json.stringify()
+getGitHubUserProfile("imisstheoldpabl0").then(
+  (data) => (document.body.innerHTML = JSON.stringify(data))
+);
+
+// Esto no funciona por la asincronía
+/*
+let resultado = getGitHubUserProfile("imisstheoldpabl0")
+document.body.innerHTML = JSON.stringify(resultado)
+*/
+
+function getGitHubUserProfile(username) {
+  return fetch("https://api.github.com/users/" + username) //Promesa
+    .then((user) => user.json()) //Fulfilled
+    .catch((error) => { //Rejected
+      console.log(error);
+      alert("Error en la llamada "+error);
+    });
+}
+
+//insertar en body
+//json.stringify()
+getGitHubUserProfile("imisstheoldpabl0")
+  .then(data => {
+    if(data != undefined){
+      document.body.innerHTML = JSON.stringify(data);
+    }else{ // Error de otro tipo
+      document.body.innerHTML = "Error interno en la petición"
+    }
+  })
+
+
+// No se sabe cuál llegará primero
+const pokeURL1  = 'https://pokeapi.co/api/v2/pokemon/pikachu/';
+const pokeURL2 = 'https://pokeapi.co/api/v2/pokemon/ditto/';
+
+fetch(pokeURL1)
+  .then((res) => res.json())
+  .then((data) => {
+    console.log('HA TERMINADO PIKACHU');
+    console.log(data);
+  });
+
+fetch(pokeURL2)
+  .then((res) => res.json())
+  .then((data) => {
+    console.log('HA TERMINADO DITTO');
+    console.log(data);
+  });
+
+
+/*********** Forma 3 ************/
+console.time("***timer2***");
+let datos0 = "";
+let datos1 = "";
+Promise.all([
+  fetch(rickMortyURL).then((res) => res.json()),
+  fetch(pokeURL).then((res) => res.json()),
+]).then((data) => {
+  const rickMortyData = data[0];
+  const pokemonData = data[1];
+  console.log(data[0])
+  console.log(data[1])
+  datos0 = data[0] // Almacena resultado Rick & Morty
+  datos1 = data[1] // Almacena resultado Ditto
+
+  console.timeEnd("***timer2***");
+});
+
+
+// Hacer la petición a la API
+fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        // Crear un nuevo elemento de imagen y establecer su src a la imagen del personaje
+        const img = document.createElement('img');
+        img.src = data.image;
+
+        // Crear un nuevo elemento de título y establecer su texto al nombre del personaje
+        const h1 = document.createElement('h1');
+        h1.textContent = data.name;
+
+        // Añadir los elementos al cuerpo del documento
+        document.body.appendChild(h1);
+        document.body.appendChild(img);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
